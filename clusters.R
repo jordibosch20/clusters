@@ -35,9 +35,10 @@ k2 <- kmeans(players_numeric, centers = 4, nstart = 25)
 #Molt important treballar amb el numeric
 str(k2)
 
-#quartz()
-#fviz_cluster(k2, data = players_numeric, geom="text")
-#dev.off()
+quartz()
+#marc tu canvia quart per la instruccio amb windows
+fviz_cluster(k2, data = players_numeric, geom="text")
+dev.off()
 
 #Comprovacio dels 4 grups
 #Afegim la nova llista al dataframe
