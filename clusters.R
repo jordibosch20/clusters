@@ -2,6 +2,8 @@ library(tidyverse)  # data manipulation
 library(cluster)    # clustering algorithms
 library(factoextra)
 
+#rownames(players) <- players$shortname. Et canvia el nom de l'index
+
 overall <- read.csv2("players.csv", sep=",")$overall
 #llegim l'overall dun altre lloc
 
@@ -36,9 +38,9 @@ players_numeric = playerscluster[-c(1)]
 players_numeric <- na.omit(players_numeric)
 #dividim per l'overall
 players_numeric <- players_numeric[,1:34]/(players_numeric[,35])
-players_numeric$overall <- NULL
+#players_numeric$overall <- NULL
 
-players_numeric <- scale(players_numeric)
+#players_numeric <- scale(players_numeric)
 
 #players_numeric <- head(players_numeric,8000)
 
@@ -75,34 +77,35 @@ hist(gkgroup)
 dev.off()
 #Ara farem el MST
 library("mstknnclust")
-matriu_players = as.matrix(head(players_numeric,600))
+matriu_players = as.matrix(head(players_numeric,500))
 
 
 library("stats")
 d <- base::as.matrix(stats::dist(matriu_players, method="euclidean"))
 #cg <- generate.complete.graph(1:nrow(matriu_players),d)
 #mstree <- generate.mst(cg)
-#plot(mstree$mst.graph, main="MST")
 
 #dividirem per l'overall
 
 res <- mst.knn(d,4)
 View(res)
 
+playerscluster <- head(playerscluster, 500)
+playerscluster$cluster <- res$cluster
 
 
-
-players_mst <- head(players_mst,500)
-players_mst$cluster <- res$cluster
-
-midgroup_mst <- players_mst[players_mst['team_position']=="MID",'cluster']
+quartz()
+par(mfrow = c(2, 2), las = 1, font.main = 4, font.lab = 4, font.axis = 2,
+    oma = c(0, 0, 1, 0), mar = c(3, 4, 4, 2))
+midgroup_mst <- playerscluster[playerscluster['team_position']=="MID",'cluster']
 hist(midgroup_mst)
 
-attackgroup_mst <- players_mst[players_mst['team_position']=="ATT",'cluster']
+attackgroup_mst <- playerscluster[playerscluster['team_position']=="ATT",'cluster']
 hist(attackgroup_mst)
 
-defensegroup_mst <- players_mst[players_mst['team_position']=="DEF",'cluster']
+defensegroup_mst <- playerscluster[playerscluster['team_position']=="DEF",'cluster']
 hist(defensegroup_mst)
 
-gkgroup_mst <- players_mst[players_mst['team_position']=="GK",'cluster']
+gkgroup_mst <- playerscluster[playerscluster['team_position']=="GK",'cluster']
 hist(gkgroup_mst)
+dev.off()
