@@ -6,12 +6,12 @@ players$player_positions <- sapply(strsplit(players$player_positions, ","), "[",
 players$X <- NULL
 players$short_name <- NULL
 players$preferred_foot <- NULL
-view(players)
+View(players)
 
 num_players <- players[, 3:length(players)]
-view(num_players)
+View(num_players)
 norm_players <- num_players/players$overall
-view(norm_players)
+View(norm_players)
 
 m <- 500
 n <- length(num_players)
@@ -19,12 +19,12 @@ n <- length(num_players)
 distancies <- as.matrix(dist(head(num_players, m)))
 distancies1 <- cbind(c(1:m), distancies)
 distancies1 <- rbind(c(0:m), distancies1)
-view(distancies1)
+View(distancies1)
 
 norm_D <- as.matrix(dist(head(norm_players, m)))
 norm_D1 <- cbind(c(1:m), norm_D)
 norm_D1 <- rbind(c(0:m), norm_D1)
-view(norm_D1)
+View(norm_D1)
 
 write.table(distancies1, file="distancies.txt", row.names=FALSE, col.names=FALSE)
 write.table(norm_D1, file="nomr_distancies.txt", row.names=FALSE, col.names=FALSE)
@@ -40,7 +40,7 @@ num_player <- scale(num_players)
 k <- 4
 
 
-num_players_m <- head(num_player, m)
+num_players_m <- head(norm_players, m)
 players_m <- head(players, m) 
 (pos <- table(players_m$player_positions))
 
@@ -76,6 +76,22 @@ for (i in names(y4)) y4[i] <- y4[i]/pos[i]
 
 
 
+for (i in names(pos)) {
+  clustini <- 1
+  aux <- vector("integer")
+  assign(i, aux)
+  for (kk in y) {
+    for (name in names(kk)) {
+      if (name == i) {
+        aux <- c(aux, rep(clustini, kk[i]*pos[i]))
+      }
+    }
+    clustini <- clustini + 1
+  }
+  assign(i, factor(aux, levels = c(1:4)))
+}
+
+plot(CDM)
 
 
 library("mstknnclust")
