@@ -1,0 +1,8 @@
+model cluster.mod;
+data cluster.dat;
+show;
+expand;
+option solver cplex;
+solve;
+display x;
+display x > sol_players.txt;
