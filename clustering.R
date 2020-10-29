@@ -76,7 +76,7 @@ y4 <- k4
 for (i in names(y4)) y4[i] <- y4[i]/pos[i]
 
 (y <- list(y1, y2, y3, y4))
-
+y <- y[c(4,3,1,2)]
 
 
 for (i in names(pos)) {
@@ -93,6 +93,22 @@ for (i in names(pos)) {
   }
   assign(i, factor(aux, levels = c(1:4)))
 }
+levels(CAM) <- c("GK","DEF","MID","ATT")
+levels(CB) <- c("GK","DEF","MID","ATT")
+levels(CDM) <- c("GK","DEF","MID","ATT")
+levels(CF) <- c("GK","DEF","MID","ATT")
+levels(CM) <- c("GK","DEF","MID","ATT")
+levels(GK) <- c("GK","DEF","MID","ATT")
+levels(LB) <- c("GK","DEF","MID","ATT")
+levels(LM) <- c("GK","DEF","MID","ATT")
+levels(LW) <- c("GK","DEF","MID","ATT")
+levels(LWB) <- c("GK","DEF","MID","ATT")
+levels(RB) <- c("GK","DEF","MID","ATT")
+levels(RM) <- c("GK","DEF","MID","ATT")
+levels(RW) <- c("GK","DEF","MID","ATT")
+levels(RWB) <- c("GK","DEF","MID","ATT")
+levels(ST) <- c("GK","DEF","MID","ATT")
+
 
 levels(CAM) <- c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
 levels(CB) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
@@ -115,50 +131,34 @@ quartz(width = 10, height = 10)                # Linux: x11(); macOS: quartz()
 par(mfrow = c(3, 3), las = 1, font.main = 4, font.lab = 4, font.axis = 2,
     oma = c(0, 0, 1, 0), mar = c(3, 4, 4, 2))
 
-plot(GK, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+plot(GK, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
 title(main="GK")
 
-plot(CB, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+plot(GB, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
 title(main="CB ")
 
-plot(CDM, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+plot(CDM, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
 title(main="CDM ")
 
+#les posem totes a la mateixa
 plot(LB, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
-title(main="LB/LBW ")
+title(main="LB/LBW/RB/RBW ")
 
-#plot(LWB, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
-#title(main="LWB ")
-
-plot(RB, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
-title(main="RB/RBW ")
-
-#plot(RWB, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
-#title(main="RWB ")
-
-plot(CM, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+plot(CM, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
 title(main="CM ")
 
-plot(LM, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+plot(LM, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
 title(main="LM/RM ")
 
-plot(CAM, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
-title(main="CAM ")
+plot(CAM, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
+title(main="CAM")
 
-#plot(RM, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
-#title(main="RM")
-
-#plot(CF, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
-#title(main="CF")
-
-#plot(LW, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
-#title(main="LW/RW")
-
-#plot(RW, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
-#title(main="RW")
+plot(LW, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
+title(main="LW/RW")
 
 plot(ST, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
 title(main="ST/CF")
+
 
 dev.off()
 library("mstknnclust")
