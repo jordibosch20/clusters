@@ -50,7 +50,7 @@ clust <- kmeans(num_players_m, centers = k, nstart = 25)
 #Molt important treballar amb el numeric
 #str(clust)
 
-windows()
+quartz()
 fviz_cluster(clust, data = num_players_m, geom = "point")
 dev.off()
 
@@ -59,16 +59,19 @@ for (i in 1:k) {
   print(assign(paste0("k", i), table(x)))
 }
 
-
+#ATTACK
 y1 <- k1
 for (i in names(y1)) y1[i] <- y1[i]/pos[i]
 
+#DEFENSE
 y2 <- k2
 for (i in names(y2)) y2[i] <- y2[i]/pos[i]
 
+#GK
 y3 <- k3
 for (i in names(y3)) y3[i] <- y3[i]/pos[i]
 
+#MIDFIELDER
 y4 <- k4
 for (i in names(y4)) y4[i] <- y4[i]/pos[i]
 
@@ -91,9 +94,73 @@ for (i in names(pos)) {
   assign(i, factor(aux, levels = c(1:4)))
 }
 
-plot(CDM)
+levels(CAM) <- c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
+levels(CB) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
+levels(CDM) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
+levels(CF) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
+levels(CM) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
+levels(GK) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
+levels(LB) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
+levels(LM) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
+levels(LW) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
+levels(LWB) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
+levels(RB) <- c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
+levels(RM) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
+levels(RW) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
+levels(RWB) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
+levels(ST) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
 
+#Aqui farem els plots de cada posicio amb el seu 
+quartz(width = 10, height = 10)                # Linux: x11(); macOS: quartz()
+par(mfrow = c(3, 3), las = 1, font.main = 4, font.lab = 4, font.axis = 2,
+    oma = c(0, 0, 1, 0), mar = c(3, 4, 4, 2))
 
+plot(GK, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+title(main="GK")
+
+plot(CB, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+title(main="CB ")
+
+plot(CDM, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+title(main="CDM ")
+
+plot(LB, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+title(main="LB/LBW ")
+
+#plot(LWB, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+#title(main="LWB ")
+
+plot(RB, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+title(main="RB/RBW ")
+
+#plot(RWB, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+#title(main="RWB ")
+
+plot(CM, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+title(main="CM ")
+
+plot(LM, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+title(main="LM/RM ")
+
+plot(CAM, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+title(main="CAM ")
+
+#plot(RM, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+#title(main="RM")
+
+#plot(CF, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+#title(main="CF")
+
+#plot(LW, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+#title(main="LW/RW")
+
+#plot(RW, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+#title(main="RW")
+
+plot(ST, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+title(main="ST/CF")
+
+dev.off()
 library("mstknnclust")
 library("stats")
 
