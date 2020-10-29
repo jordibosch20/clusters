@@ -110,21 +110,6 @@ levels(RWB) <- c("GK","DEF","MID","ATT")
 levels(ST) <- c("GK","DEF","MID","ATT")
 
 
-levels(CAM) <- c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
-levels(CB) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
-levels(CDM) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
-levels(CF) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
-levels(CM) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
-levels(GK) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
-levels(LB) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
-levels(LM) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
-levels(LW) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
-levels(LWB) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
-levels(RB) <- c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
-levels(RM) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
-levels(RW) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
-levels(RWB) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
-levels(ST) <-  c("ATTACK","DEFENSE","GOALKEEPER","MIDFIELDER")
 
 #Aqui farem els plots de cada posicio amb el seu 
 quartz(width = 10, height = 10)                # Linux: x11(); macOS: quartz()
@@ -134,7 +119,7 @@ par(mfrow = c(3, 3), las = 1, font.main = 4, font.lab = 4, font.axis = 2,
 plot(GK, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
 title(main="GK")
 
-plot(GB, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
+plot(CB, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
 title(main="CB ")
 
 plot(CDM, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
