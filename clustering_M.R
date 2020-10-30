@@ -81,6 +81,28 @@ for (i in names(pos)) {
 }
 
 
+# Ojective function of the k-medoids, with the clusters obtained
+# with the k-means 
+
+medoids_k_means <- vector("character", k)
+for (i in 1:k) {
+  dist_sum <- with(clust, subset(cluster, cluster == i))
+  for (j in 1:length(dist_sum)) {
+    dist_sum[j] <- sum(D[names(dist_sum)[j], names(dist_sum)])
+  }
+  medoids_k_means[i] <- names(dist_sum)[which.min(dist_sum)]
+}
+
+medoids_k_means
+
+f_obj_k_means <- 0
+for (i in 1:k) {
+  name <- medoids_k_means[i]
+  print(f_obj_k_means <- f_obj_k_means 
+                        + sum(D[name, names(with(clust, subset(cluster, cluster == i)))]))
+}
+f_obj_k_means
+
 
 ###### MST ######
 
@@ -104,7 +126,25 @@ for (i in 1:(k - 1)) {
 str(comp <- components(mstree))
 
 
+# Ojective function of the k-medoids, with the clusters obtained
+# with the MST 
 
+medoids_mst <- vector("character", k)
+for (i in 1:k) {
+  dist_sum <- with(comp, subset(membership, membership == i))
+  for (j in 1:length(dist_sum)) {
+    dist_sum[j] <- sum(D[names(dist_sum)[j], names(dist_sum)])
+  }
+  medoids_mst[i] <- names(dist_sum)[which.min(dist_sum)]
+}
 
+medoids_mst
 
+f_obj_mst <- 0
+for (i in 1:k) {
+  name <- medoids_mst[i]
+  print(f_obj_mst <- f_obj_mst 
+        + sum(D[name, names(with(comp, subset(membership, membership == i)))]))
+}
+f_obj_mst
 
