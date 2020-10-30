@@ -120,17 +120,17 @@ plot(GK, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
 title(main="GK")
 
 plot(CB, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
-title(main="CB ")
-
-plot(CDM, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
-title(main="CDM ")
+title(main="CB")
 
 #les posem totes a la mateixa
-plot(LB, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+plot(LB, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
 title(main="LB/LBW/RB/RBW ")
 
+plot(CDM, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
+title(main="CDM")
+
 plot(CM, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
-title(main="CM ")
+title(main="CM")
 
 plot(LM, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
 title(main="LM/RM ")
@@ -141,7 +141,7 @@ title(main="CAM")
 plot(LW, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
 title(main="LW/RW")
 
-plot(ST, col=c("#FF3300","#FFFF33","#FF9900","#0066CC"))
+plot(ST, col=c("#FF9900","#FFFF33","#0066CC","#FF3300"))
 title(main="ST/CF")
 
 
